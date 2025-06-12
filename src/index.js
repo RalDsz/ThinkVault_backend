@@ -20,7 +20,7 @@ const port = process.env.PORT || 5001; // Use environment variable for port or d
 // Middleware to parse JSON bodies
 app.use(express.json());
 app.use(cors({
-  origin: 'http://localhost:5173'}, // Allow requests from your frontend app's
+  origin: 'https://think-vault-eight.vercel.app/'}, // Allow requests from your frontend app's
 
 ))
 
