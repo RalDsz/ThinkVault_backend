@@ -4,10 +4,13 @@ import { connectDB } from './config/db.js';
 import dotenv from 'dotenv';
 dotenv.config(); // Load environment variables from .env file
 import cors from 'cors';
+import job from './cron.js'
 
 // console.log(process.env.MONGO_URI); // Log the MongoDB URI to verify it's being read correctly
 
 const app = express();
+
+job.start() // Start the cron job to run every minute
 
 
 
