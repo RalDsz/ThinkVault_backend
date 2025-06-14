@@ -5,7 +5,7 @@ import {
   getAllNotes, 
   updateNote, 
   getNoteById,
-  reorderNotes // Add this import
+  reorderNotes
 } from '../controllers/notesControllers.js';
 
 const router = express.Router();
@@ -13,7 +13,7 @@ const router = express.Router();
 router.get('/', getAllNotes);
 router.get('/:id', getNoteById);
 router.post('/', createNote);
-router.post('/reorder', reorderNotes); // Add this route
+router.put('/reorder', reorderNotes);  // Changed to PUT here
 router.put('/:id', updateNote);
 router.delete('/:id', deleteNote);
 
