@@ -40,6 +40,6 @@ app.get('/', (req, res) => {
 app.use("/api/inngest", serve({ client: inngest, functions }));
 
 // Listen on localhost:5001
-app.listen(PORT, 'localhost', () => {
-  console.log(`✅ Server running at http://localhost:${PORT}`);
+app.listen(PORT, () => {
+  console.log(`✅ Server running on port ${PORT}`);
 });
