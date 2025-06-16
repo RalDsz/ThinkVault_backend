@@ -14,8 +14,15 @@ job.start(); // Start the cron job to run every minute
 // Middleware to parse JSON bodies
 app.use(express.json());
 app.use(cors({
+<<<<<<< HEAD
   origin: 'http://localhost:5173', // Remove trailing slash for correct matching
 }));
+=======
+  origin: 'https://think-vault-eight.vercel.app'}, // Allow requests from your frontend app's
+
+))
+
+>>>>>>> 5b1a19e44b33968b8984be8516f9ff77097a174e
 
 app.use((req, res, next) => {
   console.log(`Request Method: ${req.method}, Request URL: ${req.url}`);
@@ -36,3 +43,10 @@ app.get('/', (req, res) => {
 app.listen(PORT, 'localhost', () => {
   console.log(`✅ Server running at http://localhost:${PORT}`);
 });
+<<<<<<< HEAD
+=======
+
+
+
+// mongodb+srv://megagravity26:fstRyJJAWwDFTUZ9@cluster0.xqfke3q.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+>>>>>>> 5b1a19e44b33968b8984be8516f9ff77097a174e
