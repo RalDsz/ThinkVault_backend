@@ -1,35 +1,33 @@
 import express from 'express';
-import notesRoutes from './routes/notesRoutes.js'; // ✅ CORRECT import path
+import notesRoutes from './routes/notesRoutes.js'; 
 import { connectDB } from './config/db.js';
-import dotenv from 'dotenv';
-dotenv.config(); // Load environment variables from .env file
+import dotenv from 'dotenv'; 
 import cors from 'cors';
 import job from './cron.js';
+import { clerkMiddleware } from '@clerk/express'
+import { serve } from "inngest/express";
+import { inngest, functions } from "./inngest/index.js"
 
 const app = express();
 const PORT = process.env.PORT || 5001;
 
-job.start(); // Start the cron job to run every minute
+dotenv.config();
+job.start(); 
+connectDB();
 
 // Middleware to parse JSON bodies
 app.use(express.json());
+
 app.use(cors({
-<<<<<<< HEAD
   origin: 'http://localhost:5173', // Remove trailing slash for correct matching
 }));
-=======
-  origin: 'https://think-vault-eight.vercel.app'}, // Allow requests from your frontend app's
 
-))
-
->>>>>>> 5b1a19e44b33968b8984be8516f9ff77097a174e
+app.use(clerkMiddleware())
 
 app.use((req, res, next) => {
   console.log(`Request Method: ${req.method}, Request URL: ${req.url}`);
   next();
 });
-
-connectDB(); // Connect to the database
 
 // Route middleware
 app.use('/api/notes', notesRoutes);
@@ -39,14 +37,9 @@ app.get('/', (req, res) => {
   res.send('Welcome to the NoteTaker API!');
 });
 
+app.use("/api/inngest", serve({ client: inngest, functions }));
+
 // Listen on localhost:5001
 app.listen(PORT, 'localhost', () => {
   console.log(`✅ Server running at http://localhost:${PORT}`);
 });
-<<<<<<< HEAD
-=======
-
-
-
-// mongodb+srv://megagravity26:fstRyJJAWwDFTUZ9@cluster0.xqfke3q.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
->>>>>>> 5b1a19e44b33968b8984be8516f9ff77097a174e
